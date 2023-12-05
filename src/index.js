@@ -10,6 +10,8 @@ import Home from './Home.js';
 import CreateUser from './CreateUser.js';
 import UserUpdate from './UserUpdate.js';
 import ShopDetail from './ShopDetail.js';
+import Shop from './Shop.js';
+import CreateShop from './CreateShop.js';
 
 
 
@@ -17,12 +19,14 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <Routes>
-  <Route path  = "/" element={<Login />} />
-  <Route path  = "/login" element={<Login />} />
-  <Route path  = "/Home" element={<Home />} />
-  <Route path  = "/Create" element={<CreateUser />} />
+  <Route path = "/" element={<Login />} />
+  <Route path = "/login" element={<Login />} />
+  <Route path = "/Home" element={<Home />} />
+  <Route path = "/Create" element={<CreateUser />} />
   <Route path = "/Update/:id" element={<UserUpdate/>} />
-  <Route path = "/Shop" element={<ShopDetail/>} />
+  <Route path = "/Shop" element={<Shop/>} />
+  <Route path = "/CreateShop" element={<CreateShop/>} />
+  <Route path = "/ShopDetail/:id" element = {<ShopDetail/>} />
 
   
 

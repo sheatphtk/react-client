@@ -28,7 +28,7 @@ export default function User() {
      
   }, [])
   const UserGet = ()=> {
-    fetch("http://localhost:3333/user")
+    fetch("http://localhost:3333/shop")
     .then(res => res.json())
     .then(
       (result) => {
@@ -57,7 +57,7 @@ export default function User() {
         redirect: 'follow'
       };
 
-      fetch("http://localhost:3333/deleteuser", requestOptions)
+      fetch("http://localhost:3333/deleteshop", requestOptions)
         .then(response => response.json())
         .then(result => {
           alert(result['message'])
@@ -79,7 +79,7 @@ export default function User() {
        
         <Box sx={{ flexGrow: 1}}>
           <Typography variant = "h6" gutterBottom component = "div">
-            Users
+            Shop
           </Typography>
         </Box>
         <Box>
@@ -96,10 +96,9 @@ export default function User() {
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
-            <TableCell align="right">First Name</TableCell>
-            <TableCell align="right">Last Name</TableCell>
-            <TableCell align="right">Username</TableCell>
-            <TableCell align="right">Type</TableCell>
+            <TableCell align="right">Shop Name</TableCell>
+            <TableCell align="right">Latitude</TableCell>
+            <TableCell align="right">Longtitude</TableCell>
             <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
@@ -110,16 +109,16 @@ export default function User() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.user_id}
+                {row.shop_id}
               </TableCell>
-              <TableCell align="right">{row.fname}</TableCell>
-              <TableCell align="right">{row.lname}</TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">{row.type}</TableCell>
+              <TableCell align="right">{row.shop_name}</TableCell>
+              <TableCell align="right">{row.shop_lat}</TableCell>
+              <TableCell align="right">{row.shop_lng}</TableCell>
+              
               <TableCell align="right">                
               <ButtonGroup variant="outlined" aria-label="outlined primary button group">
-                    <Button onClick={()=> UserUpdate(row.user_id)}>Edit</Button>
-                    <Button onClick={()=> UserDelete(row.user_id)}>Del</Button>
+                    <Button onClick={()=> UserUpdate(row.shop_id)}>Edit</Button>
+                    <Button onClick={()=> UserDelete(row.shop_id)}>Del</Button>
                 </ButtonGroup></TableCell>
             </TableRow>
           ))}
