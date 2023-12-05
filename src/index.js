@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import UserCreate from './UserCreate.js';
+
 
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes,Route } from "react-router-dom";
 import Login from './Login.js';
 import Home from './Home.js';
+import CreateUser from './CreateUser.js';
+import UserUpdate from './UserUpdate.js';
+import ShopDetail from './ShopDetail.js';
 
 
 
@@ -17,7 +20,12 @@ root.render(
   <Route path  = "/" element={<Login />} />
   <Route path  = "/login" element={<Login />} />
   <Route path  = "/Home" element={<Home />} />
-  <Route path  = "/create" element={<Home />} />
+  <Route path  = "/Create" element={<CreateUser />} />
+  <Route path = "/Update/:id" element={<UserUpdate/>} />
+  <Route path = "/Shop" element={<ShopDetail/>} />
+
+  
+
   </Routes>
   </BrowserRouter>
 );
