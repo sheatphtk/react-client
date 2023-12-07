@@ -87,6 +87,7 @@ export default function UserUpdate() {
       <CssBaseline />
       <Container maxWidth="sm" sx = {{ p :2}}>
       <Paper sx = {{ p :2}}>
+    
    
           <Typography variant = "h6" gutterBottom component = "div">
            Update User

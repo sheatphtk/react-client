@@ -12,7 +12,10 @@ import UserUpdate from './UserUpdate.js';
 import ShopDetail from './ShopDetail.js';
 import Shop from './Shop.js';
 import CreateShop from './CreateShop.js';
-
+import User from './User.js';
+import Banner from './Banner.js';
+import CreateBanner from './CreateBanner.js';
+import BannerUpdate from './BannerUpdate.js';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -27,6 +30,13 @@ root.render(
   <Route path = "/Shop" element={<Shop/>} />
   <Route path = "/CreateShop" element={<CreateShop/>} />
   <Route path = "/ShopDetail/:id" element = {<ShopDetail/>} />
+  <Route path = "/UserList" element = {<User/>} />
+  <Route path = "/Banner" element = {<Banner/>}/>
+  <Route path = "/CreateBanner" element = {<CreateBanner/>}/>
+  <Route path = "/BannerUpdate/:id" element = {<BannerUpdate/>}/>
+
+  
+  
 
   
 

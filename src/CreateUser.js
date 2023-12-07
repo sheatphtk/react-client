@@ -11,6 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Navbar from './Navbar';
 
 export default function UserCreate() {
     const handleSubmit = event =>{
@@ -38,9 +39,9 @@ export default function UserCreate() {
         .then(result => {
             alert(result['status'])
             if(result['status'] === 'success'){
-                window.location.href = '/Home'
+                window.location.href = '/Userlist'
             }else{
-                window.location.href = '/Home'
+                window.location.href = '/Userlist'
             }
 
         })
@@ -55,6 +56,7 @@ export default function UserCreate() {
   return ( 
     <React.Fragment>
       <CssBaseline />
+      <Navbar />
       <Container maxWidth="sm" sx = {{ p :2}}>
       <Paper sx = {{ p :2}}>
    

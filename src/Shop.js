@@ -14,6 +14,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from '@mui/material/Link';
+import Navbar from './Navbar';
 
 
 
@@ -38,11 +39,11 @@ export default function User() {
      
     )
   }
-  const UserUpdate = id => {
+  const ShopUpdate = id => {
     window.location =  '/Update/'+id
 
   }
-  const UserDelete = id => {
+  const ShopDelete = id => {
           var myHeaders = new Headers();
           myHeaders.append("Content-Type", "application/json");
 
@@ -57,7 +58,7 @@ export default function User() {
         redirect: 'follow'
       };
 
-      fetch("http://localhost:3333/deleteuser", requestOptions)
+      fetch("http://localhost:3333/deleteshop", requestOptions)
         .then(response => response.json())
         .then(result => {
           alert(result['message'])
@@ -73,6 +74,7 @@ export default function User() {
   return (
     <React.Fragment>
       <CssBaseline />
+      <Navbar/>
       <Container maxWidth="lg" sx = {{ p :2}}>
       <Paper sx = {{ p :2}}>
       <Box display = "flex">
@@ -83,7 +85,7 @@ export default function User() {
           </Typography>
         </Box>
         <Box>
-          <Link href = 'createshop'>
+          <Link href = 'CreateShop'>
           <Button variant = "contained" sx = {{bgcolor: '#647498'}}>
             Create
           </Button>
@@ -97,6 +99,7 @@ export default function User() {
           <TableRow>
             <TableCell>ID</TableCell>
             <TableCell align="right">Shop Name</TableCell>
+            <TableCell align="right">Address</TableCell>
             <TableCell align="right">Latitude</TableCell>
             <TableCell align="right">Longtitude</TableCell>
             <TableCell align="right">Action</TableCell>
@@ -112,13 +115,14 @@ export default function User() {
                 {row.shop_id}
               </TableCell>
               <TableCell align="right">{row.shop_name}</TableCell>
+              <TableCell align="right">{row.address}</TableCell>
               <TableCell align="right">{row.shop_lat}</TableCell>
               <TableCell align="right">{row.shop_lng}</TableCell>
               
               <TableCell align="right">                
               <ButtonGroup variant="outlined" aria-label="outlined primary button group">
-                    <Button onClick={()=> UserUpdate(row.shop_id)}>Edit</Button>
-                    <Button onClick={()=> UserDelete(row.shop_id)}>Del</Button>
+                    <Button onClick={()=> ShopUpdate(row.shop_id)}>Edit</Button>
+                    <Button onClick={()=> ShopDelete(row.shop_id)}>Del</Button>
                 </ButtonGroup></TableCell>
             </TableRow>
           ))}

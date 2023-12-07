@@ -1,4 +1,3 @@
-
 import  React , {useState , useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -9,21 +8,15 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './Navbar';
-import MapContainer from './MapContainer';
+
 
 export default function Shopdetail() {
   const {id} = useParams();
   
-  const [shopname,setShopName] = useState('');
-  const [shopaddress,setShopAddress] = useState('');
-  const [shoplat,setShopLat] = useState('');
-  const [shoplng,setShopLng] = useState('');
   const [bannername,setBannerName] = useState('');
-  const MapData = {
-    shoplat: shoplat,
-    shoplng: shoplng
-   
-  };
+  const [bannershopid,setBannerShopId] = useState('');
+  
+
   
   
 
@@ -39,18 +32,14 @@ export default function Shopdetail() {
           redirect: 'follow'
         };
         
-        fetch("http://localhost:3333/getShopdetailbyid/"+id, requestOptions)
+        fetch("http://localhost:3333/getBannerdetailbyid/"+id, requestOptions)
           .then(response => response.json())
           .then(result => {
               
               if(result['status']==='success'){
-                  setShopName(result['user'][0]['shop_name'])
-                  setShopAddress(result['user'][0]['address'])
-                  setShopLat(result['user'][0]['shop_lat'])
-                  setShopLng(result['user'][0]['shop_lng'])
-                  setBannerName(result['user'][0]['banner_name'])
-                  setShopLat(result['user'][0]['shop_lat'])
-                  setShopLng(result['user'][0]['shop_lng'])
+                setBannerName(result['user'][0]['banner_name'])
+                setBannerShopId(result['user'][0]['banner_shop_id'])
+                  
                   
                   
                   
@@ -74,8 +63,9 @@ export default function Shopdetail() {
         <Box display = "flex">
          
          <Box sx={{ flexGrow: 1}}>
-           <Typography variant = "h1" gutterBottom component = "div">
-            {shopname}
+           <Typography variant = "h6" gutterBottom component = "div">
+           {`BANNER NAME : ${bannername}`}
+            
            </Typography>
          </Box>
          <Box>
@@ -85,14 +75,11 @@ export default function Shopdetail() {
          </Box>
          <Box sx={{ flexGrow: 1}}>
             <Typography variant = "h6" gutterBottom component = "div">
-            {shopaddress}
+            {bannershopid}
            </Typography>
             </Box>
 
-            <MapContainer 
-            latData = {MapData.shoplat}
-            lngData = {MapData.shoplng}
-            />
+       
 
           </Paper>
         </Container>

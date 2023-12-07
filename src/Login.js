@@ -54,10 +54,11 @@ export default function SignIn() {
     .then(response=> response.json())
     .then(data=> {
         if(data.status === 'ok'){
+          localStorage.setItem('token',data.token)
+          window.location = '/Home'//redirect
             
             alert('login success')
-            localStorage.setItem('token',data.token)
-            window.location = '/Home'//redirect
+
         }else {
             alert('login failed');
         }

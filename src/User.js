@@ -14,6 +14,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from '@mui/material/Link';
+import Navbar from './Navbar';
 
 
 
@@ -60,9 +61,10 @@ export default function User() {
       fetch("http://localhost:3333/deleteuser", requestOptions)
         .then(response => response.json())
         .then(result => {
-          alert(result['message'])
+          
           if(result['status']==='success'){
-            UserGet()
+            alert(result['message'])
+           UserGet()
           }
           })
         .catch(error => console.log('error', error));
@@ -73,6 +75,7 @@ export default function User() {
   return (
     <React.Fragment>
       <CssBaseline />
+      <Navbar/>
       <Container maxWidth="lg" sx = {{ p :2}}>
       <Paper sx = {{ p :2}}>
       <Box display = "flex">
