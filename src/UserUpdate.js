@@ -94,9 +94,9 @@ export default function UserUpdate() {
         .then(result => {
             alert(result['status'])
             if(result['status'] === 'success'){
-                window.location.href = '/Home'
+                window.location.href = '/Userlist'
             }else{
-                window.location.href = '/Home'
+                window.location.href = '/Userlist'
             }
 
         })
