@@ -25,8 +25,30 @@ export default function User() {
 
   useEffect(() => {
     UserGet()
+      const token = localStorage.getItem('token')
+      fetch("http://localhost:3333/authen", {
+        method: "POST", 
+        headers: {
+          'Authorization': 'Bearer '+token,
+          "Content-Type": "application/json",
+        },
        
-     
+      })
+      .then(response=> response.json())
+      .then(data=> {
+          if(data.status === 'ok'){
+          
+          }else {
+              alert('authen failed');
+              localStorage.removeItem('token');
+              window.location = '/login'//redirect
+          }
+          
+      })
+      .catch((error)=>{
+          console.error('Error:',error)
+      })
+
   }, [])
   const UserGet = ()=> {
     fetch("http://localhost:3333/shop")
@@ -40,7 +62,7 @@ export default function User() {
     )
   }
   const ShopUpdate = id => {
-    window.location =  '/Update/'+id
+    window.location =  '/UpdateShop/'+id
 
   }
   const ShopDelete = id => {
@@ -61,13 +83,38 @@ export default function User() {
       fetch("http://localhost:3333/deleteshop", requestOptions)
         .then(response => response.json())
         .then(result => {
+          if(result['status']==='success'){
+            BannerDelete(id)
+            //UserGet()
+          }
+          })
+        .catch(error => console.log('error', error));
+  }
+  const BannerDelete = id => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify({
+        "id": id
+      });
+
+      var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+
+      fetch("http://localhost:3333/deletebannerByShopId", requestOptions)
+        .then(response => response.json())
+        .then(result => {
           alert(result['message'])
           if(result['status']==='success'){
             UserGet()
           }
           })
         .catch(error => console.log('error', error));
-  }
+}
   
 
  

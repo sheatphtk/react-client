@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './Navbar';
+import UpdateUploadImage from './UpdateUploadImage';
 
 
 export default function Shopdetail() {
@@ -27,6 +28,33 @@ export default function Shopdetail() {
   //ค่า default
 
   useEffect(()=>{
+      const token = localStorage.getItem('token')
+      fetch("http://localhost:3333/authen", {
+        method: "POST", 
+        headers: {
+          
+          "Content-Type": "application/json",
+          "Authorization": 'Bearer '+token
+        },
+       
+      })
+      .then(response=> response.json())
+      .then(data=> {
+        alert(data.status);
+          if(data.status === 'ok'){
+            //alert('authen success')
+  
+          }else {
+              alert('authen failed');
+              localStorage.removeItem('token');
+              window.location = '/Login'//redirect
+          }
+          console.log('Success:',data);
+      })
+      .catch((error)=>{
+          console.error('Error:',error)
+      })
+    
       var requestOptions = {
           method: 'GET',
           redirect: 'follow'
@@ -78,6 +106,10 @@ export default function Shopdetail() {
             {bannershopid}
            </Typography>
             </Box>
+            <UpdateUploadImage
+            id = {id}
+            shop_id = {bannershopid}
+            />
 
        
 

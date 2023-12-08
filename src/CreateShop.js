@@ -1,4 +1,4 @@
-import React , {useState } from 'react';
+import React , {useState,useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import Container from '@mui/material/Container';
@@ -7,13 +7,42 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Navbar from './Navbar';
 
+
 export default function UserCreate() {
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    fetch("http://localhost:3333/authen", {
+      method: "POST", 
+      headers: {
+        
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer '+token
+      },
+     
+    })
+    .then(response=> response.json())
+    .then(data=> {
+        if(data.status === 'ok'){
+          //alert('authen success')
+
+        }else {
+            alert('authen failed');
+            localStorage.removeItem('token');
+            window.location = '/Login'//redirect
+        }
+        console.log('Success:',data);
+    })
+    .catch((error)=>{
+        console.error('Error:',error)
+    })
+
+
+ 
+     
+  }, [])
+  
     const handleSubmit = event =>{
         event.preventDefault();
         var myHeaders = new Headers();
@@ -94,11 +123,15 @@ export default function UserCreate() {
             </Button>
             </Grid>
             </Grid>
+            
+            
+
         </form>
     
    
         </Paper>
       </Container>
+      
     </React.Fragment>
   );
 }

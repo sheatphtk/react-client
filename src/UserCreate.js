@@ -1,5 +1,4 @@
-import Axios from 'axios';
-import React , {useState } from 'react';
+import React , {useState,useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import Container from '@mui/material/Container';
@@ -14,6 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function UserCreate() {
+  
     const handleSubmit = event =>{}
     const [fname,setfname] = useState('');
     const [lname,setlname] = useState('');
@@ -22,7 +22,36 @@ export default function UserCreate() {
     const [password,setpassword] = useState('');
     const [createUserList, setcreateUserList] = useState([]);
 
+    useEffect(() => {
+     
+      const token = localStorage.getItem('token')
+      fetch("http://localhost:3333/authen", {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer '+token
+        },
+       
+      })
+      .then(response=> response.json())
+      .then(data=> {
+          if(data.status === 'ok'){
+           
+          }else {
+              alert('authen failed');
+              localStorage.removeItem('token');
+              window.location = '/login'//redirect
+          }
+          console.log('Success:',data);
+      })
+      .catch((error)=>{
+          console.error('Error:',error)
+      })
   
+  
+   
+       
+    }, [])
   
   return ( 
     <React.Fragment>

@@ -16,6 +16,8 @@ import User from './User.js';
 import Banner from './Banner.js';
 import CreateBanner from './CreateBanner.js';
 import BannerUpdate from './BannerUpdate.js';
+import UpdateShop from './UpdateShop.js';
+import Register from './Register.js';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -34,6 +36,8 @@ root.render(
   <Route path = "/Banner" element = {<Banner/>}/>
   <Route path = "/CreateBanner" element = {<CreateBanner/>}/>
   <Route path = "/BannerUpdate/:id" element = {<BannerUpdate/>}/>
+  <Route path = "/UpdateShop/:id" element = {<UpdateShop/>}/>
+  <Route path = "/Register" element = {<Register/>}/>
 
   
   

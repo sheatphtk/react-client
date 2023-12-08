@@ -86,7 +86,35 @@ export default function PersistentDrawerLeft() {
   
   useEffect(() => {
     BannerGet()
-       
+    const token = localStorage.getItem('token')
+    fetch("http://localhost:3333/authen", {
+      method: "POST", 
+      headers: {
+        
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer '+token
+      },
+     
+    })
+    .then(response=> response.json())
+    .then(data=> {
+    
+        if(data.status === 'ok'){
+          //alert('authen success')
+
+        }else {
+            alert('authen failed');
+            localStorage.removeItem('token');
+            window.location = '/Login'//redirect
+        }
+        console.log('Success:',data);
+    })
+    .catch((error)=>{
+        console.error('Error:',error)
+    })
+
+
+ 
      
   }, [])
   const BannerGet = ()=> {

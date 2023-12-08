@@ -72,6 +72,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const handleLogout = () =>{
+    localStorage.removeItem('token');
+    window.location = './login'
+
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -98,7 +103,7 @@ export default function PersistentDrawerLeft() {
 
     }
     if(index === 4){
-      window.location =  '/login'
+     handleLogout()
 
     }
 

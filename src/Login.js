@@ -12,13 +12,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Swal from 'sweetalert2';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://feyverly.com">
+      Feyverly
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -43,6 +44,8 @@ export default function SignIn() {
       password: data.get('password'),
 
     }
+  
+    
     
     fetch("http://localhost:3333/login", {
       method: "POST", 
@@ -55,9 +58,27 @@ export default function SignIn() {
     .then(data=> {
         if(data.status === 'ok'){
           localStorage.setItem('token',data.token)
-          window.location = '/Home'//redirect
+          Swal.fire({
+              title: 'Login Successful!',
+              text: 'Welcome back!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            });
+            const timeoutId = setTimeout(() => {
+              window.location.href = '/Home'; 
+            }, 3000);
+            return () => clearTimeout(timeoutId);
+    
+        
+         // window.location = '/Home'//redirect
+  
             
-            alert('login success')
+            /*Swal.fire({
+              title: 'Login Successful!',
+              text: 'Welcome back!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            });*/
 
         }else {
             alert('login failed');
@@ -129,7 +150,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="Register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
