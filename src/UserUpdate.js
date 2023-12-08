@@ -92,7 +92,7 @@ export default function UserUpdate() {
         fetch("http://localhost:3333/updateUser", requestOptions)
         .then(response => response.json())
         .then(result => {
-            alert(result['status'])
+            //alert(result['status'])
             if(result['status'] === 'success'){
                 window.location.href = '/Userlist'
             }else{
